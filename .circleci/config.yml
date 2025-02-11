@@ -45,7 +45,7 @@ jobs:
       - run:
           name: Generate 800MB File
           command: |
-            dd if=/dev/urandom of=nano.smallfile.dat bs=1M count=300
+            dd if=/dev/urandom of=nano/smallfile.dat bs=1M count=300
 
       - save_cache:
           key: smallfile-cache-main
