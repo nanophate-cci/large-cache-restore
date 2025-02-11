@@ -10,7 +10,9 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: largefile-cache-{{ checksum "largefile.dat" }}
+          keys:
+            - largefile-cache-{{ checksum "largefile.dat" }}
+            - largefile-cache-
 
       - run:
           name: Generate 800MB File
@@ -34,7 +36,9 @@ jobs:
             fi
             
       - restore_cache:
-          key: small-cache-{{ checksum "smallfile.dat" }}
+          keys:
+            - small-cache-{{ checksum "smallfile.dat" }}
+            - small-cache-
 
       - run:
           name: Generate 800MB File
