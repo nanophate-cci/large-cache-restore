@@ -32,9 +32,9 @@ jobs:
       - run:
           name: Verify File
           command: |
-            if [ -f nano/largefile.dat ]; then
+            if [ -f nano/largefile-0.dat ]; then
               echo "File restored successfully."
-              ls -lh nano/largefile.dat
+              ls -lh nano/
             else
               echo "File not found."
               exit 1
