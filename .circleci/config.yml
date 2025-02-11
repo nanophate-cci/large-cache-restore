@@ -9,29 +9,27 @@ jobs:
     steps:
       - checkout
       
-      - run: mkdir nano
-
       - restore_cache:
           keys:
-            - largefile-cache-{{ checksum "largefile.dat" }}
+            - largefile-cache-main
             - largefile-cache-
 
       - run:
           name: Generate 800MB File
           command: |
-            dd if=/dev/urandom of=nano/largefile.dat bs=1M count=800
+            dd if=/dev/urandom of=largefile.dat bs=1M count=800
 
       - save_cache:
-          key: largefile-cache-{{ checksum "largefile.dat" }}
+          key: largefile-cache-main
           paths:
-            - nano/largefile.dat
+            - largefile.dat
 
       - run:
           name: Verify File
           command: |
-            if [ -f nano/largefile.dat ]; then
+            if [ -f largefile.dat ]; then
               echo "File restored successfully."
-              ls -lh nano/largefile.dat
+              ls -lh largefile.dat
             else
               echo "File not found."
               exit 1
@@ -39,25 +37,25 @@ jobs:
             
       - restore_cache:
           keys:
-            - small-cache-{{ checksum "nano/smallfile.dat" }}
+            - small-cache-main
             - small-cache-
 
       - run:
           name: Generate 800MB File
           command: |
-            dd if=/dev/urandom of=nano/smallfile.dat bs=1M count=300
+            dd if=/dev/urandom of=smallfile.dat bs=1M count=300
 
       - save_cache:
-          key: smallfile-cache-{{ checksum "nano/smallfile.dat" }}
+          key: smallfile-cache-main
           paths:
-            - nano/smallfile.dat
+            - smallfile.dat
 
       - run:
           name: Verify File
           command: |
-            if [ -f nano/smallfile.dat ]; then
+            if [ -f smallfile.dat ]; then
               echo "File restored successfully."
-              ls -lh nano/smallfile.dat
+              ls -lh smallfile.dat
             else
               echo "File not found."
               exit 1
