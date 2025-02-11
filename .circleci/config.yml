@@ -13,7 +13,8 @@ jobs:
       
       - restore_cache:
           keys:
-            - largefile-cache-main
+            - largefile-cache-main-{{ .BuildNum }} 
+            - largefile-cache-main-
             - largefile-cache-
 
       - run:
@@ -42,7 +43,8 @@ jobs:
             
       - restore_cache:
           keys:
-            - small-cache-main
+            - small-cache-main-{{ .BuildNum }} 
+            - small-cache-main-
             - small-cache-
 
       - run:
