@@ -15,7 +15,7 @@ jobs:
       - run:
           name: Generate 800MB File
           command: |
-            dd if=/dev/zero of=largefile.dat bs=1M count=800
+            dd if=/dev/urandom of=largefile.dat bs=1M count=800
 
       - save_cache:
           key: largefile-cache-{{ checksum "largefile.dat" }}
@@ -28,6 +28,30 @@ jobs:
             if [ -f largefile.dat ]; then
               echo "File restored successfully."
               ls -lh largefile.dat
+            else
+              echo "File not found."
+              exit 1
+            fi
+            
+      - restore_cache:
+          key: small-cache-{{ checksum "smallfile.dat" }}
+
+      - run:
+          name: Generate 800MB File
+          command: |
+            dd if=/dev/urandom of=smallfile.dat bs=1M count=300
+
+      - save_cache:
+          key: smallfile-cache-{{ checksum "smallfile.dat" }}
+          paths:
+            - smallfile.dat
+
+      - run:
+          name: Verify File
+          command: |
+            if [ -f smallfile.dat ]; then
+              echo "File restored successfully."
+              ls -lh smallfile.dat
             else
               echo "File not found."
               exit 1
