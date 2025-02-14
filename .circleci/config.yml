@@ -56,6 +56,9 @@ jobs:
           key: smallfile-cache-main
           paths:
             - nano
+      
+      - store_artifacts:
+         path: nano/
 
       - run:
           name: Verify File
