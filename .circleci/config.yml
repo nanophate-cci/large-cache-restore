@@ -20,10 +20,10 @@ jobs:
       - run:
           name: Generate 800MB File
           command: |
-            dd if=/dev/urandom of=nano/largefile-0.dat bs=1M count=1800
-            dd if=/dev/urandom of=nano/largefile-1.dat bs=1M count=800
-            dd if=/dev/urandom of=nano/largefile-2.dat bs=1M count=800
-            dd if=/dev/urandom of=nano/largefile-3.dat bs=1M count=800
+            #dd if=/dev/urandom of=nano/largefile-0.dat bs=1M count=1800
+            #dd if=/dev/urandom of=nano/largefile-1.dat bs=1M count=800
+            #dd if=/dev/urandom of=nano/largefile-2.dat bs=1M count=800
+            dd if=/dev/urandom of=nano/largefile-3.dat bs=1M count=300
 
       - save_cache:
           key: largefile-cache-main
