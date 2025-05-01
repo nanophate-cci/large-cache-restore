@@ -33,7 +33,7 @@ jobs:
       - run:
           name: Verify File
           command: |
-            if [ -f nano/largefile-0.dat ]; then
+            if [ -f nano/largefile-3.dat ]; then
               echo "File restored successfully."
               ls -lh nano/
             else
