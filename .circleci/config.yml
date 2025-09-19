@@ -1,5 +1,10 @@
 version: 2.1
 
+parameters:
+  nana:
+    type: boolean
+    default: false
+
 jobs:
   build:
     docker:
@@ -12,15 +17,15 @@ jobs:
       - run: mkdir nano
       - run:
           name: Set cache week
-          command: echo 'export CACHE_WEEK=$(date +%Y-%U)' >> "$BASH_ENV"
+          command: date +%Y-%U > CACHE_WEEK
 
       - run:
           name: Check cache week
-          command: echo $CACHE_WEEK
+          command: cat CACHE_WEEK
 
       - restore_cache:
           keys:
-            - largefile-cache-main-{{ .BuildNum }}-{{ .Environment.CACHE_WEEK }}
+            - largefile-cache-main-{{ .BuildNum }}-{{ checksum "CACHE_WEEK" }}
             - largefile-cache-main-{{ .BuildNum }} 
             - largefile-cache-main-
             - largefile-cache-
