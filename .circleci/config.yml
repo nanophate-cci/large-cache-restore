@@ -10,9 +10,13 @@ jobs:
       - checkout
       
       - run: mkdir nano
-      
+      - run:
+          name: Set cache week
+          command: echo 'export CACHE_WEEK=$(date +%Y-%U)' >> "$BASH_ENV"
+
       - restore_cache:
           keys:
+            - largefile-cache-main-{{ .BuildNum }}-{{ .Environment.CACHE_WEEK}}
             - largefile-cache-main-{{ .BuildNum }} 
             - largefile-cache-main-
             - largefile-cache-
@@ -26,7 +30,7 @@ jobs:
             dd if=/dev/urandom of=nano/largefile-3.dat bs=1M count=300
 
       - save_cache:
-          key: largefile-cache-main
+          key: largefile-cache-main-{{ .BuildNum }}-{{ .Environment.CACHE_WEEK}}
           paths:
             - nano
 
