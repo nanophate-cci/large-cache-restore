@@ -14,6 +14,10 @@ jobs:
           name: Set cache week
           command: echo 'export CACHE_WEEK=$(date +%Y-%U)' >> "$BASH_ENV"
 
+      - run:
+          name: Check cache week
+          command: echo $CACHE_WEEK
+
       - restore_cache:
           keys:
             - largefile-cache-main-{{ .BuildNum }}-{{ .Environment.CACHE_WEEK}}
