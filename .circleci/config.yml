@@ -20,7 +20,7 @@ jobs:
 
       - restore_cache:
           keys:
-            - largefile-cache-main-{{ .BuildNum }}-{{ .Environment.CACHE_WEEK}}
+            - largefile-cache-main-{{ .BuildNum }}-{{ .Environment.CACHE_WEEK }}
             - largefile-cache-main-{{ .BuildNum }} 
             - largefile-cache-main-
             - largefile-cache-
