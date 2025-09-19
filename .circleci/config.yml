@@ -21,8 +21,8 @@ jobs:
 
       - restore_cache:
           keys:
-            - largefile-cache-main-{{ .BuildNum }}-{{ checksum "/tmp/CACHE_WEEK" }}
-            - largefile-cache-main-{{ .BuildNum }} 
+            #- largefile-cache-main-{{ .BuildNum }}-{{ checksum "/tmp/CACHE_WEEK" }}
+            - largefile-cache-main-{{ checksum "/tmp/CACHE_WEEK" }}
             - largefile-cache-main-
             - largefile-cache-
 
@@ -35,7 +35,7 @@ jobs:
             dd if=/dev/urandom of=nano/largefile-3.dat bs=1M count=300
 
       - save_cache:
-          key: largefile-cache-main-{{ .BuildNum }}-{{ checksum "/tmp/CACHE_WEEK" }
+          key: largefile-cache-main-{{ checksum "CACHE_WEEK" }}
           paths:
             - nano
 
