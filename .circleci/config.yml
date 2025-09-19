@@ -17,11 +17,11 @@ jobs:
       - run: mkdir nano
       - run:
           name: Set cache week
-          command: date +%Y-%U | tee CACHE_WEEK
+          command: date +%Y-%U | tee /tmp/CACHE_WEEK
 
       - restore_cache:
           keys:
-            - largefile-cache-main-{{ .BuildNum }}-{{ checksum "CACHE_WEEK" }}
+            - largefile-cache-main-{{ .BuildNum }}-{{ checksum "/tmp/CACHE_WEEK" }}
             - largefile-cache-main-{{ .BuildNum }} 
             - largefile-cache-main-
             - largefile-cache-
