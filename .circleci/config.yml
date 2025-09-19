@@ -17,11 +17,7 @@ jobs:
       - run: mkdir nano
       - run:
           name: Set cache week
-          command: date +%Y-%U > CACHE_WEEK
-
-      - run:
-          name: Check cache week
-          command: cat CACHE_WEEK
+          command: date +%Y-%U | tee CACHE_WEEK
 
       - restore_cache:
           keys:
